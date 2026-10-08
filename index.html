@@ -216,17 +216,6 @@ C.lawan={t:'Lawan Kata',e:'↔️',c:'#8e24aa',g:2,L:[['Ukuran dan jumlah',lw('B
 C.indo={t:'Cinta Indonesia',e:'🇮🇩',c:'#d32f2f',g:2,L:[['Simbol negara',em('Bendera Merah Putih|🇮🇩;Burung Garuda|🦅;Monas|🗼;Komodo|🦎;Padi|🌾;Rumah Adat|🛖')],['Pulau besar',tx(['Sumatra','Jawa','Kalimantan','Sulawesi','Papua'],'pulau',2.8,(i,d)=>`Pulau ${d}`)],['Hari penting',tx(['Kemerdekaan','Hari Kartini','Hari Pahlawan','Hari Guru'],'hari',2.2,(i,d)=>['17 Agustus','21 April','10 November','25 November'][i]+': '+d)]]};
 C.sains={t:'Sains Seru',e:'🔬',c:'#0277bd',g:1,L:[['Panca indera',em('Melihat|👁️;Mendengar|👂;Mencium|👃;Mengecap|👅;Meraba|✋')],['Wujud benda',em('Padat|🧊;Cair|💧;Gas|💨')],['Listrik dan magnet',em('Magnet|🧲;Baterai|🔋;Lampu|💡;Api|🔥;Kompas|🧭')],['Tumbuhan tumbuh',em('Biji|🌰;Tunas|🌱;Tanaman|🌿;Pohon|🌳;Bunga|🌷;Buah|🍎')]]};
 C.doa={t:'Doa & Ucapan',e:'🤲',c:'#1565c0',g:3,L:[['Ucapan sehari-hari',ar('بِسْمِ اللَّهِ|Bismillah|Dengan nama Allah;الْحَمْدُ لِلَّهِ|Alhamdulillah|Segala puji bagi Allah;السَّلَامُ عَلَيْكُمْ|Assalamualaikum|Semoga selamat atas kamu;سُبْحَانَ اللَّهِ|Subhanallah|Maha Suci Allah;اللَّهُ أَكْبَرُ|Allahu Akbar|Allah Maha Besar;مَا شَاءَ اللَّهُ|Masya Allah|Atas kehendak Allah;إِنْ شَاءَ اللَّهُ|Insya Allah|Jika Allah menghendaki')],['Kapan mengucapkannya?',ak('Mau makan|🍽️|Bismillah;Selesai makan|🥣|Alhamdulillah;Bertemu teman|🤝|Assalamualaikum;Melihat pelangi|🌈|Subhanallah;Melihat bunga indah|🌸|Masya Allah;Merencanakan besok|📅|Insya Allah')],['Shalat lima waktu',tx(['Subuh','Zuhur','Asar','Magrib','Isya'],'shalat',3,(i,d)=>`Shalat ${d}`)],['Nabi dan Rasul',tx(['Adam','Idris','Nuh','Ibrahim','Ismail','Ishaq','Yakub','Yusuf','Musa','Isa','Muhammad'],'nabi',2.6,(i,d)=>`Nabi ${d}`)],['Surat pendek',tx(['Al-Fatihah','An-Nas','Al-Falaq','Al-Ikhlas','Al-Lahab','An-Nasr','Al-Kafirun','Al-Kautsar'],'surat',2.4,(i,d)=>`${d} (${[7,6,5,4,5,3,6,3][i]} ayat)`)],['Asmaul Husna',ar('الرَّحْمَٰنُ|Ar-Rahman|Maha Pengasih;الرَّحِيمُ|Ar-Rahim|Maha Penyayang;الْمَلِكُ|Al-Malik|Maha Merajai;السَّلَامُ|As-Salam|Maha Pemberi Keselamatan;الْخَالِقُ|Al-Khaliq|Maha Pencipta;الْغَفُورُ|Al-Ghafur|Maha Pengampun;الرَّزَّاقُ|Ar-Razzaq|Maha Pemberi Rezeki;الْعَلِيمُ|Al-Alim|Maha Mengetahui;السَّمِيعُ|As-Sami|Maha Mendengar;الْبَصِيرُ|Al-Bashir|Maha Melihat')]]};
-/* =====================================================================
-   MENU TAMBAHAN - Perpustakaan At Tibyan
-   CARA PAKAI:
-   1) Buka Index.html, cari baris:  /* Pencarian, tema, dan gelar */
-   2) Tempel SELURUH isi file ini tepat DI ATAS baris tersebut.
-   3) Simpan, lalu Terapkan > Kelola deployment > Edit > Versi baru > Terapkan.
-   Code.gs TIDAK perlu diubah.
-   Menu baru muncul di "Rak Islami" (g:3). Ubah angka g bila ingin pindah rak:
-   0 Dasar, 1 Dunia Sekitar, 2 Kehidupan, 3 Islami, 4 Permainan.
-   ===================================================================== */
-
 /* Pembuat kartu tanya-jawab: "petunjuk|emoji|jawaban;..."
    Petunjuk ikut tampil di kartu kuis. pb = pertanyaan kuis. */
 const qa=(r,pb)=>r.split(';').map(x=>{
