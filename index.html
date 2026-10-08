@@ -216,7 +216,77 @@ C.lawan={t:'Lawan Kata',e:'↔️',c:'#8e24aa',g:2,L:[['Ukuran dan jumlah',lw('B
 C.indo={t:'Cinta Indonesia',e:'🇮🇩',c:'#d32f2f',g:2,L:[['Simbol negara',em('Bendera Merah Putih|🇮🇩;Burung Garuda|🦅;Monas|🗼;Komodo|🦎;Padi|🌾;Rumah Adat|🛖')],['Pulau besar',tx(['Sumatra','Jawa','Kalimantan','Sulawesi','Papua'],'pulau',2.8,(i,d)=>`Pulau ${d}`)],['Hari penting',tx(['Kemerdekaan','Hari Kartini','Hari Pahlawan','Hari Guru'],'hari',2.2,(i,d)=>['17 Agustus','21 April','10 November','25 November'][i]+': '+d)]]};
 C.sains={t:'Sains Seru',e:'🔬',c:'#0277bd',g:1,L:[['Panca indera',em('Melihat|👁️;Mendengar|👂;Mencium|👃;Mengecap|👅;Meraba|✋')],['Wujud benda',em('Padat|🧊;Cair|💧;Gas|💨')],['Listrik dan magnet',em('Magnet|🧲;Baterai|🔋;Lampu|💡;Api|🔥;Kompas|🧭')],['Tumbuhan tumbuh',em('Biji|🌰;Tunas|🌱;Tanaman|🌿;Pohon|🌳;Bunga|🌷;Buah|🍎')]]};
 C.doa={t:'Doa & Ucapan',e:'🤲',c:'#1565c0',g:3,L:[['Ucapan sehari-hari',ar('بِسْمِ اللَّهِ|Bismillah|Dengan nama Allah;الْحَمْدُ لِلَّهِ|Alhamdulillah|Segala puji bagi Allah;السَّلَامُ عَلَيْكُمْ|Assalamualaikum|Semoga selamat atas kamu;سُبْحَانَ اللَّهِ|Subhanallah|Maha Suci Allah;اللَّهُ أَكْبَرُ|Allahu Akbar|Allah Maha Besar;مَا شَاءَ اللَّهُ|Masya Allah|Atas kehendak Allah;إِنْ شَاءَ اللَّهُ|Insya Allah|Jika Allah menghendaki')],['Kapan mengucapkannya?',ak('Mau makan|🍽️|Bismillah;Selesai makan|🥣|Alhamdulillah;Bertemu teman|🤝|Assalamualaikum;Melihat pelangi|🌈|Subhanallah;Melihat bunga indah|🌸|Masya Allah;Merencanakan besok|📅|Insya Allah')],['Shalat lima waktu',tx(['Subuh','Zuhur','Asar','Magrib','Isya'],'shalat',3,(i,d)=>`Shalat ${d}`)],['Nabi dan Rasul',tx(['Adam','Idris','Nuh','Ibrahim','Ismail','Ishaq','Yakub','Yusuf','Musa','Isa','Muhammad'],'nabi',2.6,(i,d)=>`Nabi ${d}`)],['Surat pendek',tx(['Al-Fatihah','An-Nas','Al-Falaq','Al-Ikhlas','Al-Lahab','An-Nasr','Al-Kafirun','Al-Kautsar'],'surat',2.4,(i,d)=>`${d} (${[7,6,5,4,5,3,6,3][i]} ayat)`)],['Asmaul Husna',ar('الرَّحْمَٰنُ|Ar-Rahman|Maha Pengasih;الرَّحِيمُ|Ar-Rahim|Maha Penyayang;الْمَلِكُ|Al-Malik|Maha Merajai;السَّلَامُ|As-Salam|Maha Pemberi Keselamatan;الْخَالِقُ|Al-Khaliq|Maha Pencipta;الْغَفُورُ|Al-Ghafur|Maha Pengampun;الرَّزَّاقُ|Ar-Razzaq|Maha Pemberi Rezeki;الْعَلِيمُ|Al-Alim|Maha Mengetahui;السَّمِيعُ|As-Sami|Maha Mendengar;الْبَصِيرُ|Al-Bashir|Maha Melihat')]]};
-/* Pencarian, tema, dan gelar */
+/* =====================================================================
+   MENU TAMBAHAN - Perpustakaan At Tibyan
+   CARA PAKAI:
+   1) Buka Index.html, cari baris:  /* Pencarian, tema, dan gelar */
+   2) Tempel SELURUH isi file ini tepat DI ATAS baris tersebut.
+   3) Simpan, lalu Terapkan > Kelola deployment > Edit > Versi baru > Terapkan.
+   Code.gs TIDAK perlu diubah.
+   Menu baru muncul di "Rak Islami" (g:3). Ubah angka g bila ingin pindah rak:
+   0 Dasar, 1 Dunia Sekitar, 2 Kehidupan, 3 Islami, 4 Permainan.
+   ===================================================================== */
+
+/* Pembuat kartu tanya-jawab: "petunjuk|emoji|jawaban;..."
+   Petunjuk ikut tampil di kartu kuis. pb = pertanyaan kuis. */
+const qa=(r,pb)=>r.split(';').map(x=>{
+  const[k,e,n]=x.split('|');
+  const v=`<div class="big em1">${e}</div><div class="em" style="font-size:1.35rem;word-break:normal">${k}</div>`;
+  return{l:`${k} → ${n}`,v,qv:v,a:n,pb,s:`${k}. Jawabannya ${n}`,h:'',b:1};
+});
+/* Pembuat urutan langkah: "Langkah 1: ..." */
+const lg2=(arr,fs)=>tx(arr,'langkah',fs||2.2,(i,d)=>`Langkah ${i+1}: ${d}`);
+
+/* 1. Kisah Nabi */
+C.kisah={t:'Kisah Nabi',e:'📚',c:'#6a1b9a',g:3,L:[
+ ['Kisah Nabi 1',qa('Membuat kapal besar|🚢|Nuh;Tidak terbakar api|🔥|Ibrahim;Ditelan ikan paus|🐋|Yunus;Tongkatnya menjadi ular|🐍|Musa;Bisa bicara dengan semut|🐜|Sulaiman','Ini kisah Nabi siapa?')],
+ ['Kisah Nabi 2',qa('Dimasukkan ke dalam sumur|🕳️|Yusuf;Sangat sabar saat sakit|🤲|Ayub;Mengalahkan raksasa Jalut|🪨|Daud;Lahir tanpa ayah|👶|Isa;Nabi terakhir|🕌|Muhammad','Ini kisah Nabi siapa?')],
+ ['Mukjizat Nabi',qa('Membelah lautan|🌊|Musa;Melunakkan besi|⚒️|Daud;Memahami bahasa hewan|🦅|Sulaiman;Menyembuhkan orang sakit|💚|Isa;Al-Quran|📖|Muhammad','Mukjizat milik Nabi siapa?')],
+ ['Nabi dan hewan',qa('Semut|🐜|Sulaiman;Ikan paus|🐋|Yunus;Burung Hud-hud|🐦|Sulaiman;Domba|🐑|Ismail;Unta Betina|🐪|Shaleh','Hewan ini bersama Nabi siapa?')]
+]};
+
+/* 2. Sahabat Nabi */
+C.sahabat={t:'Sahabat Nabi',e:'🤝',c:'#00838f',g:3,L:[
+ ['Sahabat utama',qa('Menemani Nabi hijrah|🤝|Abu Bakar;Tegas dan adil|⚖️|Umar;Dermawan dan pemalu|💧|Utsman;Pemberani dan cerdas|🛡️|Ali','Siapa sahabat ini?')],
+ ['Sahabat dan istri Nabi',qa('Muazin pertama|📢|Bilal;Istri pertama Nabi|💖|Khadijah;Sahabat yang paling dulu masuk Islam dari kalangan pria dewasa|🌟|Abu Bakar;Pemuda yang tidur di tempat Nabi saat hijrah|🛏️|Ali','Siapa dia?')]
+]};
+
+/* 3. Akhlak Mulia */
+C.akhlak={t:'Akhlak Mulia',e:'💝',c:'#c2185b',g:3,L:[
+ ['Akhlak baik 1',qa('Selalu berkata benar|✅|Jujur;Tidak marah saat diganggu|🧘|Sabar;Memberi teman makanan|🍪|Dermawan;Mencium tangan orang tua|🤲|Hormat','Itu akhlak apa?')],
+ ['Akhlak baik 2',qa('Mengembalikan barang yang ditemukan|🎒|Amanah;Mengucap terima kasih|🙏|Bersyukur;Menolong teman yang jatuh|🩹|Peduli;Menepati janji|🤞|Janji;Membereskan mainan|🧸|Rapi','Itu akhlak apa?')]
+]};
+
+/* 4. Doa Harian (periksa lafaz Arab bersama ustadzah sebelum dipakai murid) */
+C.dharian={t:'Doa Harian',e:'🌙',c:'#283593',g:3,L:[
+ ['Doa sehari-hari',ar('بِاسْمِكَ اللَّهُمَّ أَحْيَا وَبِاسْمِكَ أَمُوتُ|Bismika Allahumma|Doa sebelum tidur;الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا|Alhamdulillahilladzi|Doa bangun tidur;غُفْرَانَكَ|Ghufranaka|Doa keluar kamar mandi;رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ|Rabbighfirli|Doa untuk orang tua;سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا|Subhanalladzi|Doa naik kendaraan')],
+ ['Kapan membacanya?',ak('Mau tidur|😴|Bismika Allahumma;Bangun tidur|🌅|Alhamdulillahilladzi;Keluar kamar mandi|🚿|Ghufranaka;Mendoakan Ayah Ibu|👨‍👩‍👧|Rabbighfirli;Naik kendaraan|🚗|Subhanalladzi')]
+]};
+
+/* 5. Hari Besar Islam */
+C.hariraya={t:'Hari Besar Islam',e:'🌙',c:'#ef6c00',g:3,L:[
+ ['Hari besar 1',qa('Berpuasa sebulan penuh|🌙|Ramadan;Hari raya setelah puasa|🎉|Idul Fitri;Berkurban hewan|🐑|Idul Adha','Itu hari apa?')],
+ ['Hari besar 2',qa('Kelahiran Nabi Muhammad|👶|Maulid Nabi;Perjalanan Nabi ke langit|🌌|Isra Miraj;Tahun baru Hijriah|🗓️|1 Muharram;Turunnya Al-Quran|📖|Nuzulul Quran','Itu peringatan apa?')]
+]};
+
+/* 6. Hewan dalam Al-Quran */
+C.hwquran={t:'Hewan dalam Al-Quran',e:'🐜',c:'#558b2f',g:3,L:[
+ ['Hewan di kisah Nabi',qa('Menyuruh temannya masuk sarang|🐜|Semut;Membawa kabar tentang Ratu Saba|🐦|Hud-hud;Menelan Nabi Yunus|🐋|Ikan Paus;Menghasilkan madu|🐝|Lebah')],
+ ['Hewan lainnya',qa('Pasukan Abrahah menunggang|🐘|Gajah;Nama surat yang artinya sapi betina|🐄|Sapi;Hewan unta Nabi Shaleh|🐪|Unta;Burung pelempar batu|🕊️|Ababil')]
+].map(([n,a])=>[n,a.map(x=>({...x,pb:'Hewan apa ini?'}))])};
+
+/* 7. Tata Cara Wudu */
+C.wudu={t:'Tata Cara Wudu',e:'💧',c:'#0288d1',g:3,L:[
+ ['Urutan wudu',lg2(['Berniat dan membaca bismillah','Membasuh kedua telapak tangan','Berkumur','Membasuh wajah','Membasuh tangan sampai siku','Mengusap kepala','Membasuh kaki'],2.2)],
+ ['Sebelum dan sesudah wudu',qa('Dibaca sebelum mulai|🗣️|Bismillah;Membersihkan mulut|💦|Berkumur;Dibasuh sampai siku|✋|Tangan;Dibasuh paling akhir|🦶|Kaki;Diusap, bukan dibasuh|🧒|Kepala','Apa itu?')]
+]};
+
+/* 8. Gerakan Shalat */
+C.shalat={t:'Gerakan Shalat',e:'🕌',c:'#2e7d32',g:3,L:[
+ ['Urutan gerakan',lg2(['Berdiri dan takbir','Membaca Al-Fatihah','Rukuk','Iktidal','Sujud','Duduk di antara dua sujud','Duduk tahiyat','Salam'],2.2)],
+ ['Jumlah rakaat',qa('Shalat Subuh|🌅|2 rakaat;Shalat Magrib|🌇|3 rakaat;Shalat Zuhur|☀️|4 rakaat','Berapa rakaat?')]
+]};
+ /* Pencarian, tema, dan gelar */
 const lvl=()=>{const t=tot();return t<10?'Pemula':t<30?'Penjelajah':t<80?'Bintang Cerah':t<150?'Juara':'Pustakawan Hebat'};
 const fq=v=>{v=v.toLowerCase().trim();document.querySelectorAll('.sec').forEach(s=>{let a=0;s.querySelectorAll('.tile').forEach(t=>{const m=t.dataset.n.includes(v);t.style.display=m?'':'none';if(m)a=1});s.style.display=a?'':'none'})};
 const theme=()=>{const r=document.documentElement,d=r.dataset.theme==='dark',n=d?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('tk-th',n)}catch(e){}};
