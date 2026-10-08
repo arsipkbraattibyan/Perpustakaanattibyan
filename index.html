@@ -195,7 +195,7 @@ const ar=r=>r.split(';').map(x=>{const[g,n,m]=x.split('|'),b=`<div class="big" s
 const ak=r=>r.split(';').map(x=>{const[s,e,u]=x.split('|'),sl=s.toLowerCase();return{l:`${s}: ${u}`,v:`<div class="big em1">${e}</div>`,qv:`<div class="big em1">${e}</div>`,a:u,pb:`Ucapan apa saat ${sl}?`,s:`Saat ${sl}, ucapkan ${u}`,h:'',b:1}});
 const lw1=(a,b,ea,eb)=>({l:`${a} ↔ ${b}`,v:`<div class="em1" style="font-size:4rem">${ea} ↔ ${eb}</div>`,qv:`<div class="big" style="font-size:3rem">${ea} ${a}</div>`,a:b,pb:`Lawan kata ${a}?`,s:`Lawan kata ${a} adalah ${b}`,h:'',b:1});
 const lw=s=>s.split(';').flatMap(r=>{const[a,b,ea,eb]=r.split('|');return[lw1(a,b,ea,eb),lw1(b,a,eb,ea)]});
-const hh=(l1,c1,l2,c2)=>hr([[l1,c1],[l2,c2]].flatMap(([l,c])=>[l+'َ|'+c+'a',l+'ِ|'+c+'i',l+'ُ|'+c+'u']).join(';'));
+const hh=(l1,c1,l2,c2)=>hr([[l1,c1],[l2,c2]].flatMap(([l,c])=>[l+'\u064E|'+c+'a',l+'\u0650|'+c+'i',l+'\u064F|'+c+'u']).join(';'));
 /* Angka */
 C.angka.L.push(['Angka 31–40',rng(31,40).map(n=>num(n,idn(n)))],['Angka 41–50',rng(41,50).map(n=>num(n,idn(n)))],['Angka setelahnya',rng(1,10).map(n=>nx(n,1))],['Angka sebelumnya',rng(2,11).map(n=>nx(n,-1))],['Tambah lebih banyak',[[6,3],[7,2],[4,5],[6,4],[7,3],[8,2],[5,4],[3,6],[2,7],[1,8]].map(([a,b])=>op(a,b,1))],['Kurang lebih banyak',[[7,2],[8,3],[9,4],[10,3],[10,6],[9,6],[8,5],[7,5],[10,8],[9,2]].map(([a,b])=>op(a,b,0))]);
 /* Huruf */
@@ -216,6 +216,8 @@ C.lawan={t:'Lawan Kata',e:'↔️',c:'#8e24aa',g:2,L:[['Ukuran dan jumlah',lw('B
 C.indo={t:'Cinta Indonesia',e:'🇮🇩',c:'#d32f2f',g:2,L:[['Simbol negara',em('Bendera Merah Putih|🇮🇩;Burung Garuda|🦅;Monas|🗼;Komodo|🦎;Padi|🌾;Rumah Adat|🛖')],['Pulau besar',tx(['Sumatra','Jawa','Kalimantan','Sulawesi','Papua'],'pulau',2.8,(i,d)=>`Pulau ${d}`)],['Hari penting',tx(['Kemerdekaan','Hari Kartini','Hari Pahlawan','Hari Guru'],'hari',2.2,(i,d)=>['17 Agustus','21 April','10 November','25 November'][i]+': '+d)]]};
 C.sains={t:'Sains Seru',e:'🔬',c:'#0277bd',g:1,L:[['Panca indera',em('Melihat|👁️;Mendengar|👂;Mencium|👃;Mengecap|👅;Meraba|✋')],['Wujud benda',em('Padat|🧊;Cair|💧;Gas|💨')],['Listrik dan magnet',em('Magnet|🧲;Baterai|🔋;Lampu|💡;Api|🔥;Kompas|🧭')],['Tumbuhan tumbuh',em('Biji|🌰;Tunas|🌱;Tanaman|🌿;Pohon|🌳;Bunga|🌷;Buah|🍎')]]};
 C.doa={t:'Doa & Ucapan',e:'🤲',c:'#1565c0',g:3,L:[['Ucapan sehari-hari',ar('بِسْمِ اللَّهِ|Bismillah|Dengan nama Allah;الْحَمْدُ لِلَّهِ|Alhamdulillah|Segala puji bagi Allah;السَّلَامُ عَلَيْكُمْ|Assalamualaikum|Semoga selamat atas kamu;سُبْحَانَ اللَّهِ|Subhanallah|Maha Suci Allah;اللَّهُ أَكْبَرُ|Allahu Akbar|Allah Maha Besar;مَا شَاءَ اللَّهُ|Masya Allah|Atas kehendak Allah;إِنْ شَاءَ اللَّهُ|Insya Allah|Jika Allah menghendaki')],['Kapan mengucapkannya?',ak('Mau makan|🍽️|Bismillah;Selesai makan|🥣|Alhamdulillah;Bertemu teman|🤝|Assalamualaikum;Melihat pelangi|🌈|Subhanallah;Melihat bunga indah|🌸|Masya Allah;Merencanakan besok|📅|Insya Allah')],['Shalat lima waktu',tx(['Subuh','Zuhur','Asar','Magrib','Isya'],'shalat',3,(i,d)=>`Shalat ${d}`)],['Nabi dan Rasul',tx(['Adam','Idris','Nuh','Ibrahim','Ismail','Ishaq','Yakub','Yusuf','Musa','Isa','Muhammad'],'nabi',2.6,(i,d)=>`Nabi ${d}`)],['Surat pendek',tx(['Al-Fatihah','An-Nas','Al-Falaq','Al-Ikhlas','Al-Lahab','An-Nasr','Al-Kafirun','Al-Kautsar'],'surat',2.4,(i,d)=>`${d} (${[7,6,5,4,5,3,6,3][i]} ayat)`)],['Asmaul Husna',ar('الرَّحْمَٰنُ|Ar-Rahman|Maha Pengasih;الرَّحِيمُ|Ar-Rahim|Maha Penyayang;الْمَلِكُ|Al-Malik|Maha Merajai;السَّلَامُ|As-Salam|Maha Pemberi Keselamatan;الْخَالِقُ|Al-Khaliq|Maha Pencipta;الْغَفُورُ|Al-Ghafur|Maha Pengampun;الرَّزَّاقُ|Ar-Razzaq|Maha Pemberi Rezeki;الْعَلِيمُ|Al-Alim|Maha Mengetahui;السَّمِيعُ|As-Sami|Maha Mendengar;الْبَصِيرُ|Al-Bashir|Maha Melihat')]]};
+/* MENU TAMBAHAN - Perpustakaan At Tibyan (Rak Islami) */
+ 
 /* Pembuat kartu tanya-jawab: "petunjuk|emoji|jawaban;..."
    Petunjuk ikut tampil di kartu kuis. pb = pertanyaan kuis. */
 const qa=(r,pb)=>r.split(';').map(x=>{
@@ -225,7 +227,7 @@ const qa=(r,pb)=>r.split(';').map(x=>{
 });
 /* Pembuat urutan langkah: "Langkah 1: ..." */
 const lg2=(arr,fs)=>tx(arr,'langkah',fs||2.2,(i,d)=>`Langkah ${i+1}: ${d}`);
-
+ 
 /* 1. Kisah Nabi */
 C.kisah={t:'Kisah Nabi',e:'📚',c:'#6a1b9a',g:3,L:[
  ['Kisah Nabi 1',qa('Membuat kapal besar|🚢|Nuh;Tidak terbakar api|🔥|Ibrahim;Ditelan ikan paus|🐋|Yunus;Tongkatnya menjadi ular|🐍|Musa;Bisa bicara dengan semut|🐜|Sulaiman','Ini kisah Nabi siapa?')],
@@ -233,49 +235,134 @@ C.kisah={t:'Kisah Nabi',e:'📚',c:'#6a1b9a',g:3,L:[
  ['Mukjizat Nabi',qa('Membelah lautan|🌊|Musa;Melunakkan besi|⚒️|Daud;Memahami bahasa hewan|🦅|Sulaiman;Menyembuhkan orang sakit|💚|Isa;Al-Quran|📖|Muhammad','Mukjizat milik Nabi siapa?')],
  ['Nabi dan hewan',qa('Semut|🐜|Sulaiman;Ikan paus|🐋|Yunus;Burung Hud-hud|🐦|Sulaiman;Domba|🐑|Ismail;Unta Betina|🐪|Shaleh','Hewan ini bersama Nabi siapa?')]
 ]};
-
+ 
 /* 2. Sahabat Nabi */
 C.sahabat={t:'Sahabat Nabi',e:'🤝',c:'#00838f',g:3,L:[
  ['Sahabat utama',qa('Menemani Nabi hijrah|🤝|Abu Bakar;Tegas dan adil|⚖️|Umar;Dermawan dan pemalu|💧|Utsman;Pemberani dan cerdas|🛡️|Ali','Siapa sahabat ini?')],
  ['Sahabat dan istri Nabi',qa('Muazin pertama|📢|Bilal;Istri pertama Nabi|💖|Khadijah;Sahabat yang paling dulu masuk Islam dari kalangan pria dewasa|🌟|Abu Bakar;Pemuda yang tidur di tempat Nabi saat hijrah|🛏️|Ali','Siapa dia?')]
 ]};
-
+ 
 /* 3. Akhlak Mulia */
 C.akhlak={t:'Akhlak Mulia',e:'💝',c:'#c2185b',g:3,L:[
  ['Akhlak baik 1',qa('Selalu berkata benar|✅|Jujur;Tidak marah saat diganggu|🧘|Sabar;Memberi teman makanan|🍪|Dermawan;Mencium tangan orang tua|🤲|Hormat','Itu akhlak apa?')],
  ['Akhlak baik 2',qa('Mengembalikan barang yang ditemukan|🎒|Amanah;Mengucap terima kasih|🙏|Bersyukur;Menolong teman yang jatuh|🩹|Peduli;Menepati janji|🤞|Janji;Membereskan mainan|🧸|Rapi','Itu akhlak apa?')]
 ]};
-
+ 
 /* 4. Doa Harian (periksa lafaz Arab bersama ustadzah sebelum dipakai murid) */
 C.dharian={t:'Doa Harian',e:'🌙',c:'#283593',g:3,L:[
  ['Doa sehari-hari',ar('بِاسْمِكَ اللَّهُمَّ أَحْيَا وَبِاسْمِكَ أَمُوتُ|Bismika Allahumma|Doa sebelum tidur;الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا|Alhamdulillahilladzi|Doa bangun tidur;غُفْرَانَكَ|Ghufranaka|Doa keluar kamar mandi;رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ|Rabbighfirli|Doa untuk orang tua;سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا|Subhanalladzi|Doa naik kendaraan')],
  ['Kapan membacanya?',ak('Mau tidur|😴|Bismika Allahumma;Bangun tidur|🌅|Alhamdulillahilladzi;Keluar kamar mandi|🚿|Ghufranaka;Mendoakan Ayah Ibu|👨‍👩‍👧|Rabbighfirli;Naik kendaraan|🚗|Subhanalladzi')]
 ]};
-
+ 
 /* 5. Hari Besar Islam */
 C.hariraya={t:'Hari Besar Islam',e:'🌙',c:'#ef6c00',g:3,L:[
  ['Hari besar 1',qa('Berpuasa sebulan penuh|🌙|Ramadan;Hari raya setelah puasa|🎉|Idul Fitri;Berkurban hewan|🐑|Idul Adha','Itu hari apa?')],
  ['Hari besar 2',qa('Kelahiran Nabi Muhammad|👶|Maulid Nabi;Perjalanan Nabi ke langit|🌌|Isra Miraj;Tahun baru Hijriah|🗓️|1 Muharram;Turunnya Al-Quran|📖|Nuzulul Quran','Itu peringatan apa?')]
 ]};
-
+ 
 /* 6. Hewan dalam Al-Quran */
 C.hwquran={t:'Hewan dalam Al-Quran',e:'🐜',c:'#558b2f',g:3,L:[
  ['Hewan di kisah Nabi',qa('Menyuruh temannya masuk sarang|🐜|Semut;Membawa kabar tentang Ratu Saba|🐦|Hud-hud;Menelan Nabi Yunus|🐋|Ikan Paus;Menghasilkan madu|🐝|Lebah')],
  ['Hewan lainnya',qa('Pasukan Abrahah menunggang|🐘|Gajah;Nama surat yang artinya sapi betina|🐄|Sapi;Hewan unta Nabi Shaleh|🐪|Unta;Burung pelempar batu|🕊️|Ababil')]
 ].map(([n,a])=>[n,a.map(x=>({...x,pb:'Hewan apa ini?'}))])};
-
+ 
 /* 7. Tata Cara Wudu */
 C.wudu={t:'Tata Cara Wudu',e:'💧',c:'#0288d1',g:3,L:[
  ['Urutan wudu',lg2(['Berniat dan membaca bismillah','Membasuh kedua telapak tangan','Berkumur','Membasuh wajah','Membasuh tangan sampai siku','Mengusap kepala','Membasuh kaki'],2.2)],
  ['Sebelum dan sesudah wudu',qa('Dibaca sebelum mulai|🗣️|Bismillah;Membersihkan mulut|💦|Berkumur;Dibasuh sampai siku|✋|Tangan;Dibasuh paling akhir|🦶|Kaki;Diusap, bukan dibasuh|🧒|Kepala','Apa itu?')]
 ]};
-
+ 
 /* 8. Gerakan Shalat */
 C.shalat={t:'Gerakan Shalat',e:'🕌',c:'#2e7d32',g:3,L:[
  ['Urutan gerakan',lg2(['Berdiri dan takbir','Membaca Al-Fatihah','Rukuk','Iktidal','Sujud','Duduk di antara dua sujud','Duduk tahiyat','Salam'],2.2)],
  ['Jumlah rakaat',qa('Shalat Subuh|🌅|2 rakaat;Shalat Magrib|🌇|3 rakaat;Shalat Zuhur|☀️|4 rakaat','Berapa rakaat?')]
 ]};
- /* Pencarian, tema, dan gelar */
+ 
+ 
+/* ===================== RAK DASAR: 3 MENU BARU ===================== */
+const xbox=(z,fs)=>`<div class="em" style="font-size:${fs||3.2}rem;word-break:normal;line-height:1.35">${z}</div>`;
+ 
+/* Posisi & Arah: "benda1|emoji1|benda2|emoji2|Atas/Bawah/Kiri/Kanan" */
+const xps=r=>r.split(';').map(x=>{
+  const[n1,e1,n2,e2,rel]=x.split('|');
+  const z={Atas:e1+'<br>'+e2,Bawah:e2+'<br>'+e1,Kiri:e1+' '+e2,Kanan:e2+' '+e1}[rel];
+  const k=`${n1} di ${rel.toLowerCase()} ${n2.toLowerCase()}`;
+  return{l:k,v:xbox(z),qv:xbox(z),a:rel,pb:`Di mana letak ${n1.toLowerCase()} dari ${n2.toLowerCase()}?`,s:k,h:'',b:1};
+});
+/* Arah panah: "emoji|Nama arah" */
+const xpn=r=>r.split(';').map(x=>{
+  const[e,n]=x.split('|'),v=`<div class="big em1">${e}</div>`;
+  return{l:`Panah ke ${n.toLowerCase()}`,v,qv:v,a:n,pb:'Panah ini menunjuk ke mana?',s:`Panah menunjuk ke ${n.toLowerCase()}`,h:'',b:1};
+});
+C.posisi={t:'Posisi & Arah',e:'🧭',c:'#5c6bc0',g:0,L:[
+ ['Atas dan Bawah',xps('Burung|🐦|Pohon|🌳|Atas;Ikan|🐟|Perahu|⛵|Bawah;Awan|☁️|Rumah|🏠|Atas;Semut|🐜|Bunga|🌸|Bawah;Bintang|⭐|Gunung|⛰️|Atas;Kucing|🐱|Awan|☁️|Bawah')],
+ ['Kiri dan Kanan',xps('Apel|🍎|Pisang|🍌|Kiri;Kucing|🐱|Anjing|🐶|Kanan;Mobil|🚗|Rumah|🏠|Kiri;Bola|⚽|Topi|🎩|Kanan;Bintang|⭐|Bulan|🌙|Kiri;Bunga|🌸|Kupu-kupu|🦋|Kanan')],
+ ['Posisi campur',xps('Burung|🐦|Rumah|🏠|Atas;Kucing|🐱|Bola|⚽|Kiri;Ikan|🐟|Kapal|🚢|Bawah;Mobil|🚗|Pohon|🌳|Kanan;Bulan|🌙|Gunung|⛰️|Atas;Topi|🎩|Sepatu|👟|Kiri;Anjing|🐶|Tulang|🦴|Kanan;Perahu|⛵|Awan|☁️|Bawah')],
+ ['Arah panah',xpn('⬆️|Atas;⬇️|Bawah;⬅️|Kiri;➡️|Kanan')]
+]};
+ 
+/* Pola & Urutan: "urutan gambar|jawaban" (jawaban = gambar berikutnya) */
+const xpt=(r,pb)=>r.split(';').map(x=>{
+  const[s,a]=x.split('|'),t=s.trim().split(/\s+/).join(' ');
+  return{l:`Pola: ${t} ${a}`,v:xbox(t+' <b style="color:var(--c)">'+a+'</b>',2.6),qv:xbox(t+' ❓',2.6),a,pb:pb||'Apa yang selanjutnya?',s:'Perhatikan polanya. Apa yang selanjutnya?',h:'',b:1};
+});
+C.pola={t:'Pola & Urutan',e:'🔁',c:'#ef5350',g:0,L:[
+ ['Pola AB',xpt('🔴 🔵 🔴 🔵 🔴|🔵;🍎 🍌 🍎 🍌 🍎|🍌;⭐ 🌙 ⭐ 🌙 ⭐|🌙;🐱 🐶 🐱 🐶 🐱|🐶;🌸 🍃 🌸 🍃 🌸|🍃;🚗 🚲 🚗 🚲 🚗|🚲')],
+ ['Pola AAB',xpt('🔴 🔴 🔵 🔴 🔴|🔵;🍎 🍎 🍌 🍎 🍎|🍌;⭐ ⭐ 🌙 ⭐ ⭐|🌙;🐱 🐱 🐶 🐱 🐱|🐶;🌸 🌸 🍃 🌸 🌸|🍃')],
+ ['Pola ABC',xpt('🔴 🔵 🟡 🔴 🔵|🟡;🍎 🍌 🍇 🍎 🍌|🍇;🐱 🐶 🐰 🐱 🐶|🐰;⭐ 🌙 ☀️ ⭐ 🌙|☀️;🚗 🚲 ✈️ 🚗 🚲|✈️')],
+ ['Pola angka',xpt('1 2 3 4|5;2 3 4 5|6;5 6 7 8|9;1 3 5 7|9;2 4 6 8|10;10 9 8 7|6')],
+ ['Urutan hari',qa('Setelah Senin|📅|Selasa;Setelah Selasa|📅|Rabu;Setelah Rabu|📅|Kamis;Setelah Kamis|📅|Jumat;Sebelum Senin|📅|Minggu','Hari apa?')],
+ ['Urutan kegiatan',qa('Bangun tidur lalu|🛏️|Sikat gigi;Setelah mandi|🛁|Berpakaian;Sebelum makan|🍽️|Cuci tangan;Sebelum tidur|🌙|Berdoa;Selesai makan|🥣|Alhamdulillah','Apa yang dilakukan?')]
+]};
+ 
+/* Mana yang Beda: "gambar sama|gambar beda" atau "3 gambar sekelompok|gambar beda" */
+const xbd=(r,pb)=>r.split(';').map((x,i)=>{
+  const[g,o]=x.split('|');let t=g.trim().split(/\s+/);if(t.length<3)t=[t[0],t[0],t[0]];
+  const a=t.slice(),p=[1,3,0,2][i%4];a.splice(p,0,o);
+  const row=h=>xbox(a.map((e,j)=>j===p&&h?`<span style="background:color-mix(in srgb,var(--c) 28%,transparent);border-radius:16px;padding:0 6px">${e}</span>`:e).join(' '),3);
+  return{l:`Yang berbeda: ${o}`,v:row(1),qv:row(0),a:o,pb,s:pb,h:'',b:1};
+});
+C.beda={t:'Mana yang Beda?',e:'🔍',c:'#43a047',g:0,L:[
+ ['Gambar yang beda',xbd('🍎|🐟;🐱|🚗;⭐|🍌;🌸|🚲;🐶|🏠;☀️|🍪','Mana yang berbeda?')],
+ ['Hampir sama',xbd('🍎|🍅;🐱|🐶;🍌|🌽;☀️|🌙;🐟|🐬;🚗|🚌','Mana yang berbeda?')],
+ ['Beda warna dan bentuk',xbd('🔵|🔴;🟦|🟥;🔺|🔷;⭐|🌙;🟢|🟡;🔶|🔵','Mana yang berbeda?')],
+ ['Tidak sekelompok',xbd('🍎 🍌 🍇|🐶;🐱 🐶 🐰|🍎;🚗 🚌 🚲|🐟;🌸 🌹 🌻|🚗;🐟 🐬 🐋|🌳','Mana yang tidak sekelompok?')]
+]};
+ 
+/* ===================== RAK PERMAINAN: 3 GAME BARU ===================== */
+/* Tebak Bayangan: "nama|emoji" */
+const xby=r=>r.split(';').map(x=>{
+  const[n,e]=x.split('|');
+  return{l:`Itu ${n}`,e,v:`<div class="big em1">${e}</div>`,qv:`<div class="big em1" style="filter:brightness(0) invert(.5)">${e}</div>`,a:n,pb:'Bayangan apa ini?',s:`Itu ${n}`,h:'',b:1};
+});
+C.bayangan={t:'Tebak Bayangan',e:'🌑',c:'#455a64',g:4,L:[
+ ['Bayangan mudah',xby('Gajah|🐘;Kucing|🐱;Ikan|🐟;Mobil|🚗;Pisang|🍌')],
+ ['Bayangan hewan',xby('Kupu-kupu|🦋;Burung Hantu|🦉;Jerapah|🦒;Kelinci|🐰;Kura-kura|🐢;Lebah|🐝')],
+ ['Bayangan benda',xby('Rumah|🏠;Topi|🎩;Payung|☂️;Sepeda|🚲;Pohon|🌳;Pesawat|✈️')]
+]};
+ 
+/* Tebak Suara Hewan: "nama|emoji|suara" */
+const xsu=r=>r.split(';').map(x=>{
+  const[n,e,u]=x.split('|');
+  return{l:`${n}: ${u}`,e,v:`<div class="big em1">${e}</div><div class="em" style="font-size:1.6rem;word-break:normal">${u}!</div>`,qv:`<div class="big" style="font-size:3rem;line-height:1.2">🔊 ${u}!</div>`,a:n,pb:'Suara siapa ini?',s:`${n}. Suaranya ${u}`,h:'',b:1};
+});
+C.suarahewan={t:'Tebak Suara Hewan',e:'🔊',c:'#ef6c00',g:4,L:[
+ ['Suara hewan ternak',xsu('Sapi|🐄|mooo;Kambing|🐐|mbek;Kuda|🐴|ihihi;Bebek|🦆|kwek kwek;Ayam Jago|🐓|kukuruyuk')],
+ ['Suara hewan lain',xsu('Kucing|🐱|meong;Anjing|🐶|guk guk;Singa|🦁|auum;Monyet|🐵|uu aa;Burung|🐦|cuit cuit;Ular|🐍|sssss')]
+]};
+ 
+/* Teka-teki Seru: "teka-teki|emoji|jawaban" (gambar jawaban tidak ditampilkan di kuis) */
+const xtk=r=>r.split(';').map(x=>{
+  const[k,e,n]=x.split('|');
+  return{l:n,e,v:`<div class="big em1">${e}</div><div class="em" style="font-size:1.3rem;word-break:normal">${k}</div>`,qv:`<div class="em" style="font-size:1.5rem;word-break:normal;line-height:1.5;margin:0">${k}</div>`,a:n,pb:'Aku siapa?',s:`${k}. Jawabannya ${n}`,h:'',b:1};
+});
+C.tekateki={t:'Teka-teki Seru',e:'🧐',c:'#6a1b9a',g:4,L:[
+ ['Teka-teki 1',xtk('Aku bulat dan kuning, bersinar di siang hari|☀️|Matahari;Aku punya belalai panjang dan telinga lebar|🐘|Gajah;Aku dipakai untuk menulis di buku|✏️|Pensil;Aku kuning dan bengkok, monyet suka aku|🍌|Pisang')],
+ ['Teka-teki 2',xtk('Aku muncul setelah hujan dan warnaku banyak|🌈|Pelangi;Aku dipakai untuk melindungi dari hujan|☂️|Payung;Aku membuat madu|🐝|Lebah;Aku punya dua roda dan dikayuh dengan kaki|🚲|Sepeda')],
+ ['Teka-teki 3',xtk('Aku dipakai di kaki sebelum keluar rumah|👟|Sepatu;Aku muncul di malam hari dan bentukku bisa berubah|🌙|Bulan;Aku berkokok setiap pagi|🐓|Ayam Jago;Aku dipakai untuk melihat lebih jelas|👓|Kacamata')]
+]};
+ 
+/* Pencarian, tema, dan gelar */
 const lvl=()=>{const t=tot();return t<10?'Pemula':t<30?'Penjelajah':t<80?'Bintang Cerah':t<150?'Juara':'Pustakawan Hebat'};
 const fq=v=>{v=v.toLowerCase().trim();document.querySelectorAll('.sec').forEach(s=>{let a=0;s.querySelectorAll('.tile').forEach(t=>{const m=t.dataset.n.includes(v);t.style.display=m?'':'none';if(m)a=1});s.style.display=a?'':'none'})};
 const theme=()=>{const r=document.documentElement,d=r.dataset.theme==='dark',n=d?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('tk-th',n)}catch(e){}};
